@@ -1,6 +1,6 @@
 # TP-2-ALGO-AVL
 
-La classe « NodeAVL » représente les nœuds de l’arbre chaque nœud a pour attribut une hauteur « height » , une valeur « valueNode » et un fils Gauche et Droit « letf & right » .
+La classe « NodeAVL » représente les nœuds de l’arbre chaque nœud a pour attribut une hauteur « height » , une valeur « valueNode » et un fils Gauche et Droit « left & right » .
 Un constructeur  prenant en paramètre une valeur, il va créer un nœud avec pour filsG et filsD ayant pour valeur null, la valeur rentrée en paramètre sera associé à la valeur du nœud et la hauteur sera égale à 1.
 De plus des méthodes getter et setter de chaque attribut ont été implémenté afin de pouvoir récupérer les données du nœud.
 
@@ -16,7 +16,7 @@ Méthode :
 
 4) « balanceTree »  va permettre de rééquilibrer l’arbre après lui avoir apporté une modification que ce soit un ajout ou une suppression. Il existe quatre possibilités de rééquilibrage.
 
-5) « display » l’affichage va s’effectuer via cette méthode
+5) « display » l’affichage ce procede par l'utilisation d'un tas binaire(c'est a dire que le noeud à l'index i aura son fils gauche et droit positionné aux index i*2 et i*2+1 respectivement). Le tas binaire sera de taille 2^Hauteur (et non 2^Hauteur-1 pour une simplicité lors de l'excution des boucles). La fonction est composée de deux boucles. La premiere remplie le tableau de noeud, et la seconde affiche les noeuds existants
 
 6) « isEmpty » une méthode booléen qui renvoie vrai si l’arbre est vide et faux sinon.
 
