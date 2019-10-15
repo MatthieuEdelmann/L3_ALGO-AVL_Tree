@@ -8,18 +8,52 @@ public class TreeAVL {
         this.height = 1;
         this.root = null;
     }
-
-    //ajoute ou supprime le noeud de l'arbre
+///////////////////////////////////////////////////////////////////////////////////
+ //ajoute ou supprime le noeud de l'arbre
+//OK
     public void addOrDeleteNode(NodeAVL actualNode, NodeAVL newNode){
         if (isExistNode(newNode)){  //si le noeud est presnt
             removeNode(actualNode,newNode); //on retire ce noeud
-            //equilibrage
+            balanceTree();//equilibrage
         }
         else    //sinon on ajoute ce noeud
             addNode(actualNode,newNode); //ajout du noeud
-            //equillibrage
+            balanceTree();//equillibrage
     }
 
+///////////////////////////////////////////////////////////////////////////////////
+//ajoute nouveau noeud
+//OK
+    public void addNode(NodeAVL actualNode, NodeAVL newNode){
+        // si l'arbre est vide on insert le nouveau node comme racine
+        if (isEmpty()) {
+            root = newNode;
+            root.setHeight(1);
+            return;//Root
+        }
+        //verifie si le noeud a un fils gauche
+        if (actualNode.getValueNode() > newNode.getValueNode()){
+            if (actualNode.getLeft()==null) {
+                actualNode.setLeft(newNode);
+                actualNode.setHeight(actualNode.getHeight()-1);
+                return;
+            }
+            addNode(actualNode.getLeft(), newNode);
+        }
+        // pareil mais pour le fils droit
+        else {
+            if (actualNode.getRight() == null) {
+                actualNode.setRight(newNode);
+                actualNode.setHeight(actualNode.getHeight()-1);
+                return;
+            }
+            addNode(actualNode.getRight(), newNode);
+        }
+    }
+   
+///////////////////////////////////////////////////////////////////////////////////////    
+//supprime un noeud
+//a finir
     public void removeNode(NodeAVL actualNode, NodeAVL deleteNode){
         if (deleteNode.getValueNode() < actualNode.getValueNode()){
             //deleteNode.setLeft(removeNode(actualNode,deleteNode.getLeft()));
@@ -29,47 +63,24 @@ public class TreeAVL {
             ////
         }
         else if (actualNode.getLeft()==null){
-            height--;
+
             actualNode.setRight(null);
         }
         else if (actualNode.getRight()==null){
-            height--;
+
             actualNode.setLeft(null);
         }
     }
 
-    public void addNode(NodeAVL actualNode, NodeAVL newNode){
-        // si l'arbre est vide on insert le nouveau node comme racine
-        if (isEmpty()) {
-            actualNode = newNode;
-            height = 1;
-            return;//Root
-        }
-        //verifie si le noeud a un fils gauche
-        if (actualNode.getValueNode() > newNode.getValueNode()){
-            if (actualNode.getLeft()==null) {
-                actualNode.setLeft(newNode);
-                height++;
-                return;
-            }
-            addNode(actualNode.getLeft(), newNode);
-        }
-        // pareil mais pour le fils droit
-        else {
-            if (actualNode.getRight() == null) {
-                actualNode.setRight(newNode);
-                height++;
-                return;
-            }
-
-            addNode(actualNode.getRight(), newNode);
-        }
+//////////////////////////////////////////////////////////////////////////////////////////
+//réequilibrage de l'arbre
+//a faire
+    public void balanceTree(){
     }
-
-    public void balanceTree(TreeAVL a){
-
-    }
+    
+///////////////////////////////////////////////////////////////////////////////////////    
 //affiche
+// a faire
     public void display(NodeAVL actualNode){
         //System.out.print(actualNode.getValueNode()+" ");
         if (actualNode.getRight() == null && actualNode.getLeft() == null);
@@ -87,14 +98,17 @@ public class TreeAVL {
         return;
     }
 
-
-    // isEmpty fonction boolean qui retourne l'etat de l'arbre
+/////////////////////////////////////////////////////////////////////////////////////
+// isEmpty fonction boolean qui retourne l'etat de l'arbre
+//OK
     public boolean isEmpty(){
 
         return (this.root==null);
     }
 
+//////////////////////////////////////////////////////////////////////////////////
 // isExistNode permet de savoir si une valeur est dans l'arbre
+//OK
     public boolean isExistNode(NodeAVL n) {
         if (n == null) {
             return false;
@@ -110,11 +124,6 @@ public class TreeAVL {
         return isExistNode(root.getRight());
     }
 
-    // retourne la hauteur de l'arbre
-    public int getHeight(TreeAVL a) {
-
-        return height;
-    }
 
 
 
