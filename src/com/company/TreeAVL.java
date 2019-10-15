@@ -81,21 +81,18 @@ public class TreeAVL {
 ///////////////////////////////////////////////////////////////////////////////////////    
 //affiche
 // a faire
-    public void display(NodeAVL actualNode){
-        //System.out.print(actualNode.getValueNode()+" ");
-        if (actualNode.getRight() == null && actualNode.getLeft() == null);
-        else{
-            if (actualNode.getLeft() != null){
-                display(actualNode.getLeft());
-                System.out.print(actualNode.getLeft().getValueNode()+" ");
-            } else System.out.print("left_null ");
-
-            if (actualNode.getRight() != null){
-                display(actualNode.getRight());
-                System.out.print(actualNode.getRight().getValueNode()+" ");
-            } else System.out.print("right_null ");
+    public void display(){
+        NodeAVL[] binaryHeap = new NodeAVL[(int) (Math.pow(2, height))];
+        binaryHeap[1] = root;
+        for (int i = 1; i != (Math.pow(2, height) / 2) - 4; i++) {
+            if (binaryHeap[i] != null){
+                binaryHeap[i * 2] = binaryHeap[i].getLeft();
+                binaryHeap[2 * i + 1] = binaryHeap[i].getRight();
+            }
         }
-        return;
+        for (int i = 1; i != (Math.pow(2, height)) - 1; i++) {
+            if(binaryHeap[i] != null)System.out.print("case n°" + i + " : " + binaryHeap[i].getValueNode() + " | ");
+        }
     }
 
 /////////////////////////////////////////////////////////////////////////////////////
