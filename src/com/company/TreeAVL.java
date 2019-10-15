@@ -41,6 +41,7 @@ public class TreeAVL {
             if (actualNode.getLeft()==null) {
                 actualNode.setLeft(newNode);
                 actualNode.setHeight(actualNode.getHeight()-1);
+                height++;
                 return;
             }
             addNode(actualNode.getLeft(), newNode);
@@ -50,6 +51,7 @@ public class TreeAVL {
             if (actualNode.getRight() == null) {
                 actualNode.setRight(newNode);
                 actualNode.setHeight(actualNode.getHeight()-1);
+                height++;
                 return;
             }
             addNode(actualNode.getRight(), newNode);
