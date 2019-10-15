@@ -55,21 +55,7 @@ public class TreeAVL {
 //supprime un noeud
 //a finir
     public void removeNode(NodeAVL actualNode, NodeAVL deleteNode){
-        if (deleteNode.getValueNode() < actualNode.getValueNode()){
-            //deleteNode.setLeft(removeNode(actualNode,deleteNode.getLeft()));
-        }
-        else if (deleteNode.getValueNode() > actualNode.getValueNode()){
-            //deleteNode.setRight(removeNode(actualNode,deleteNode.getRight()));
-            ////
-        }
-        else if (actualNode.getLeft()==null){
-
-            actualNode.setRight(null);
-        }
-        else if (actualNode.getRight()==null){
-
-            actualNode.setLeft(null);
-        }
+       
     }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -79,8 +65,8 @@ public class TreeAVL {
     }
     
 ///////////////////////////////////////////////////////////////////////////////////////    
-//affiche
-// a faire
+//affichage 
+//OK
     public void display(){
         NodeAVL[] binaryHeap = new NodeAVL[(int) (Math.pow(2, height))];
         binaryHeap[1] = root;
@@ -99,7 +85,6 @@ public class TreeAVL {
 // isEmpty fonction boolean qui retourne l'etat de l'arbre
 //OK
     public boolean isEmpty(){
-
         return (this.root==null);
     }
 
@@ -113,16 +98,9 @@ public class TreeAVL {
         if (n.getValueNode() == root.getLeft().getValueNode() || n.getValueNode() == root.getRight().getValueNode()) {
             return true;
         }
-
         if (n.getValueNode() < root.getRight().getValueNode()) {
             return isExistNode(root.getLeft());
         }
-
         return isExistNode(root.getRight());
     }
-
-
-
-
-
 }
