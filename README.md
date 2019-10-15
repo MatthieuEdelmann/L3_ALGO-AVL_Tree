@@ -16,7 +16,7 @@ Méthode :
 
 4) « balanceTree »  va permettre de rééquilibrer l’arbre après lui avoir apporté une modification que ce soit un ajout ou une suppression. Il existe quatre possibilités de rééquilibrage.
 
-5) « display » l’affichage ce procede par l'utilisation d'un tas binaire(c'est a dire que le noeud à l'index i aura son fils gauche et droit positionné aux index i*2 et i*2+1 respectivement). Le tas binaire sera de taille 2^Hauteur (et non 2^Hauteur-1 pour une simplicité lors de l'excution des boucles). La fonction est composée de deux boucles. La premiere remplie le tableau de noeud, et la seconde affiche les noeuds existants
+5) « display » méthode d'affichage qui va pour cela utiliser un tas binaire, le noeud à l'index i aura son fils gauche et droit positionnés respectivement aux index i*2 et i*2+1. Le tas binaire sera de taille 2^Hauteur (et non 2^Hauteur-1 pour une simplicité lors de l'exécution des boucles). La fonction est composée de deux boucles, la première remplie le tableau de noeud et la seconde affiche les noeuds existants.
 
 6) « isEmpty » une méthode booléen qui renvoie vrai si l’arbre est vide et faux sinon.
 
