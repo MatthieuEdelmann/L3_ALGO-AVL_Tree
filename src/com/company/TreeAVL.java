@@ -131,16 +131,24 @@ public class TreeAVL {
 //////////////////////////////////////////////////////////////////////////////////
 // isExistNode permet de savoir si une valeur est dans l'arbre
 //OK
-    public boolean isExistNode(NodeAVL n) {
-        if (n == null) {
+    public boolean isExistNode(NodeAVL actualNode, NodeAVL n) {
+        if (actualNode == null) return false;
+        if (actualNode.getValueNode() == n.getValueNode()) return true;
+        if (n == null || (actualNode.getLeft() == null && actualNode.getRight() == null) ) {
             return false;
         }
-        if (n.getValueNode() == root.getLeft().getValueNode() || n.getValueNode() == root.getRight().getValueNode()) {
-            return true;
+        if (actualNode.getLeft() != null){
+            if (n.getValueNode() == actualNode.getLeft().getValueNode()) return true;
         }
-        if (n.getValueNode() < root.getRight().getValueNode()) {
-            return isExistNode(root.getLeft());
+
+        if (actualNode.getRight() != null){
+            if (n.getValueNode() == actualNode.getRight().getValueNode()) return true;
         }
-        return isExistNode(root.getRight());
+
+        if (actualNode.getRight() !=null || actualNode .getLeft() != null) return false;
+        if (n.getValueNode() < actualNode.getRight().getValueNode()) {
+            return isExistNode(actualNode.getLeft(),n);
+        }
+        return isExistNode(actualNode.getRight(), n);
     }
 }
