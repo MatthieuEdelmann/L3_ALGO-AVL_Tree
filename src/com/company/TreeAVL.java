@@ -1,4 +1,5 @@
 package com.company;
+import static java.lang.Float.max;
 
 public class TreeAVL {
     public int height;
@@ -14,11 +15,15 @@ public class TreeAVL {
     public void addOrDeleteNode(NodeAVL actualNode, NodeAVL newNode){
         if (isExistNode(newNode)){  //si le noeud est presnt
             removeNode(actualNode,newNode); //on retire ce noeud
-            balanceTree();//equilibrage
+            if (isBalanceTree(newNode) == false) {
+                //equilibrage
+            }
         }
         else    //sinon on ajoute ce noeud
             addNode(actualNode,newNode); //ajout du noeud
-            balanceTree();//equillibrage
+            if (isBalanceTree(newNode) == false) {
+            //equilibrage
+            }
     }
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -60,8 +65,43 @@ public class TreeAVL {
 
 //////////////////////////////////////////////////////////////////////////////////////////
 //réequilibrage de l'arbre
-//a faire
-    public void balanceTree(){
+//OK
+    public boolean isBalanceTree(NodeAVL n){
+        if (n == null){
+            return true;
+        }
+
+        int i = (n.getRight().getHeight() - n.getLeft().getHeight());
+        if (i <= 1)
+                return true;
+            else
+                return false;
+    }
+///////////////////////////////////////////////////////////////////////////////////////
+     public NodeAVL balanceL(NodeAVL n){
+        NodeAVL y = n.getRight();
+        NodeAVL z = y.getLeft();
+
+        y.setLeft(n);
+        n.setRight(z);
+
+        n.setHeight((int) (max(n.getLeft().getHeight(),n.getRight().getHeight())+1));
+        y.setHeight((int) (max(y.getLeft().getHeight(),y.getRight().getHeight())+1));
+
+        return y;
+    }
+    
+    public NodeAVL balanceR(NodeAVL y){
+        NodeAVL x = y.getLeft();
+        NodeAVL z = x.getRight();
+
+        x.setLeft(y);
+        y.setRight(z);
+
+        y.setHeight((int) (max(y.getLeft().getHeight(),y.getRight().getHeight())+1));
+        x.setHeight((int) (max(x.getLeft().getHeight(),x.getRight().getHeight())+1));
+
+        return x;
     }
     
 ///////////////////////////////////////////////////////////////////////////////////////    
