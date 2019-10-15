@@ -13,7 +13,7 @@ public class TreeAVL {
  //ajoute ou supprime le noeud de l'arbre
 //OK
     public void addOrDeleteNode(NodeAVL actualNode, NodeAVL newNode){
-        if (isExistNode(newNode)){  //si le noeud est presnt
+        if (isExistNode(actualNode,newNode)){  //si le noeud est presnt
             removeNode(actualNode,newNode); //on retire ce noeud
             if (isBalanceTree(newNode) == false) {
                 //equilibrage
