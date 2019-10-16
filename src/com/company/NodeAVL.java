@@ -1,7 +1,18 @@
 package com.company;
 
+
 class NodeAVL {
     private NodeAVL left, right;
+    private int valueNode;
+    private  int height;
+
+    // root
+    public NodeAVL(int valueNode) {
+        this.left = null;
+        this.right = null;
+        this.valueNode = valueNode;
+        this.height = 1;
+    }
 
     public NodeAVL getLeft() {
         return left;
@@ -19,11 +30,11 @@ class NodeAVL {
         this.right = right;
     }
 
-    public int getValueNode() {
+    public int getValue() {
         return valueNode;
     }
 
-    public void setValueNode(int valueNode) {
+    public void setValue(int valueNode) {
         this.valueNode = valueNode;
     }
 
@@ -31,24 +42,8 @@ class NodeAVL {
         return height;
     }
 
+
     public void setHeight(int height) {
         this.height = height;
     }
-
-    private int valueNode;
-    private  int height;
-
-// root
-    public NodeAVL(int valueNode) {
-        this.left = null;
-        this.right = null;
-        this.valueNode = valueNode;
-        this.height = 1;
-    }
-
-
-
-
-
-
 }
