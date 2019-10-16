@@ -14,12 +14,14 @@ public class TreeAVL {
 //OK
     public void addOrDeleteNode(NodeAVL actualNode, NodeAVL newNode){
         if (isExistNode(actualNode,newNode)){  //si le noeud est presnt
+            System.out.println("remove");
             removeNode(actualNode,newNode); //on retire ce noeud
            /* if (isBalanceTree(newNode) == false) {
                 //equilibrage
             }*/
         }
         else    //sinon on ajoute ce noeud
+            System.out.println("add");
             addNode(actualNode,newNode); //ajout du noeud
             /* if (isBalanceTree(newNode) == false) {
             //equilibrage
@@ -130,13 +132,13 @@ public class TreeAVL {
     public void display(){
         NodeAVL[] binaryHeap = new NodeAVL[(int) (Math.pow(2, height))];
         binaryHeap[1] = root;
-        for (int i = 1; i != (Math.pow(2, height) / 2) - 4; i++) {
+        for (int i = 1; i != (Math.pow(2, height) / 2); i++) {
             if (binaryHeap[i] != null){
                 binaryHeap[i * 2] = binaryHeap[i].getLeft();
                 binaryHeap[2 * i + 1] = binaryHeap[i].getRight();
             }
         }
-        for (int i = 1; i != (Math.pow(2, height)) - 1; i++) {
+        for (int i = 1; i != (Math.pow(2, height)) ; i++) {
             if(binaryHeap[i] != null)System.out.print("case n°" + i + " : " + binaryHeap[i].getValueNode() + " | ");
         }
     }
@@ -208,4 +210,5 @@ public class TreeAVL {
         }
         return null;
     }
+///////////////////////////////////////////////////////////////////////////////////////////
 }
