@@ -13,5 +13,7 @@ public class Main {
         tree.addOrDeleteNode(tree.root, new NodeAVL(57));
         tree.addOrDeleteNode(tree.root, new NodeAVL(58));
         tree.display();
+        tree.removeNode(tree.root, new NodeAVL(57));
+        tree.display();
     }
 }

@@ -15,15 +15,15 @@ public class TreeAVL {
     public void addOrDeleteNode(NodeAVL actualNode, NodeAVL newNode){
         if (isExistNode(actualNode,newNode)){  //si le noeud est presnt
             removeNode(actualNode,newNode); //on retire ce noeud
-            if (isBalanceTree(newNode) == false) {
+           /* if (isBalanceTree(newNode) == false) {
                 //equilibrage
-            }
+            }*/
         }
         else    //sinon on ajoute ce noeud
             addNode(actualNode,newNode); //ajout du noeud
-            if (isBalanceTree(newNode) == false) {
+            /* if (isBalanceTree(newNode) == false) {
             //equilibrage
-            }
+            } */
     }
 
 ///////////////////////////////////////////////////////////////////////////////////
@@ -61,8 +61,26 @@ public class TreeAVL {
 ///////////////////////////////////////////////////////////////////////////////////////    
 //supprime un noeud
 //a finir
-    public void removeNode(NodeAVL actualNode, NodeAVL deleteNode){
-       
+    public void removeNode(NodeAVL actualNode, NodeAVL deleteNode) {
+        if (actualNode.getValueNode() == deleteNode.getValueNode()) {
+            if (actualNode.getLeft() == null && actualNode.getRight() == null) {
+                actualNode = null;
+                return;
+            }
+        }
+        NodeAVL parentOfActualNode = root;
+        parentOfActualNode = parentOfNode(parentOfActualNode, actualNode);
+        if (actualNode.getLeft() == null) {
+            parentOfActualNode.setRight(actualNode);
+            return;
+        }
+        if (actualNode.getRight() == null) {
+            parentOfActualNode.setLeft(actualNode);
+            return;
+        }
+
+        actualNode = getMinRight(actualNode.getRight());
+
     }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -152,5 +170,42 @@ public class TreeAVL {
             return isExistNode(actualNode.getLeft(),n);
         }
         return isExistNode(actualNode.getRight(), n);
+    }
+///////////////////////////////////////////////////////////////////////////////////////////
+
+    public NodeAVL parentOfNode (NodeAVL cursorNode, NodeAVL actualNode){
+        if (cursorNode.getLeft() != null){
+            if(cursorNode.getLeft().getValueNode() == actualNode.getValueNode()){
+                return cursorNode;
+            }
+            if (cursorNode.getLeft().getValueNode() > actualNode.getValueNode()){
+                parentOfNode(cursorNode.getLeft(),actualNode);
+            }
+        }
+
+        if (cursorNode.getRight() != null){
+            if(cursorNode.getRight().getValueNode() == actualNode.getValueNode()){
+                return cursorNode;
+            }
+            if (cursorNode.getRight().getValueNode() < actualNode.getValueNode()){
+                parentOfNode(cursorNode.getRight(),actualNode);
+            }
+        }
+        return null;
+    }
+///////////////////////////////////////////////////////////////////////////////////////////
+
+    public NodeAVL getMinRight(NodeAVL actualNode){
+        NodeAVL tmp;
+        if (actualNode.getLeft() == null){
+            tmp = actualNode;
+            if(actualNode.getRight() != null){
+                actualNode = actualNode.getRight();
+            }
+            return actualNode;
+        } else {
+            getMinRight(actualNode.getLeft());
+        }
+        return null;
     }
 }
