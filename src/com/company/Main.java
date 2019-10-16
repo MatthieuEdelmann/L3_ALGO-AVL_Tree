@@ -17,17 +17,6 @@ public class Main {
             tree.addOrDeleteNode(tree.root, new NodeAVL(value));
             tree.display();
         }while (true);
-/*
-        tree.addOrDeleteNode(tree.root, new NodeAVL(45));
-        tree.addOrDeleteNode(tree.root, new NodeAVL(56));
-        tree.addOrDeleteNode(tree.root, new NodeAVL(5));
-        tree.addOrDeleteNode(tree.root, new NodeAVL(54));
-        tree.addOrDeleteNode(tree.root, new NodeAVL(54));
-        tree.addOrDeleteNode(tree.root, new NodeAVL(57));
-        tree.addOrDeleteNode(tree.root, new NodeAVL(58));
-        tree.display();
-        tree.removeNode(tree.root, new NodeAVL(57));
-        System.out.println();
-        tree.display();*/
     }
 }
+
