@@ -10,27 +10,26 @@ public class TreeAVL {
         this.root = null;
     }
 ///////////////////////////////////////////////////////////////////////////////////
- //ajoute ou supprime le noeud de l'arbre
-//OK
+//ajoute ou supprime le noeud de l'arbre
+
     public void addOrDeleteNode(NodeAVL actualNode, NodeAVL newNode){
         if (isExistNode(actualNode,newNode)){  //si le noeud est presnt
-            System.out.println("remove");
             removeNode(actualNode,newNode); //on retire ce noeud
            /* if (isBalanceTree(newNode) == false) {
                 //equilibrage
             }*/
         }
-        else    //sinon on ajoute ce noeud
-            System.out.println("add");
+        else {   //sinon on ajoute ce noeud
             addNode(actualNode,newNode); //ajout du noeud
             /* if (isBalanceTree(newNode) == false) {
             //equilibrage
             } */
+        }
     }
 
 ///////////////////////////////////////////////////////////////////////////////////
 //ajoute nouveau noeud
-//OK
+
     public void addNode(NodeAVL actualNode, NodeAVL newNode){
         // si l'arbre est vide on insert le nouveau node comme racine
         if (isEmpty()) {
@@ -39,7 +38,7 @@ public class TreeAVL {
             return;//Root
         }
         //verifie si le noeud a un fils gauche
-        if (actualNode.getValueNode() > newNode.getValueNode()){
+        if (actualNode.getValue() > newNode.getValue()){
             if (actualNode.getLeft()==null) {
                 actualNode.setLeft(newNode);
                 actualNode.setHeight(actualNode.getHeight()-1);
@@ -48,7 +47,7 @@ public class TreeAVL {
             }
             addNode(actualNode.getLeft(), newNode);
         }
-        // pareil mais pour le fils droit
+        // verifie si le noeud a un fils droit
         else {
             if (actualNode.getRight() == null) {
                 actualNode.setRight(newNode);
@@ -62,9 +61,9 @@ public class TreeAVL {
    
 ///////////////////////////////////////////////////////////////////////////////////////    
 //supprime un noeud
-//a finir
+
     public void removeNode(NodeAVL actualNode, NodeAVL deleteNode) {
-        if (actualNode.getValueNode() == deleteNode.getValueNode()) {
+        if (actualNode.getValue() == deleteNode.getValue()) {
             if (actualNode.getLeft() == null && actualNode.getRight() == null) {
                 actualNode = null;
                 return;
@@ -80,19 +79,17 @@ public class TreeAVL {
             parentOfActualNode.setLeft(actualNode);
             return;
         }
-
         actualNode = getMinRight(actualNode.getRight());
 
     }
 
 //////////////////////////////////////////////////////////////////////////////////////////
-//réequilibrage de l'arbre
+// vérifie le réequilibrage de l'arbre
 //OK
     public boolean isBalanceTree(NodeAVL n){
         if (n == null){
             return true;
         }
-
         int i = (n.getRight().getHeight() - n.getLeft().getHeight());
         if (i <= 1)
                 return true;
@@ -127,8 +124,8 @@ public class TreeAVL {
     }
     
 ///////////////////////////////////////////////////////////////////////////////////////    
-//affichage 
-//OK
+//affichage
+
     public void display(){
         NodeAVL[] binaryHeap = new NodeAVL[(int) (Math.pow(2, height))];
         binaryHeap[1] = root;
@@ -139,62 +136,41 @@ public class TreeAVL {
             }
         }
         for (int i = 1; i != (Math.pow(2, height)) ; i++) {
-            if(binaryHeap[i] != null)System.out.print("case n°" + i + " : " + binaryHeap[i].getValueNode() + " | ");
+            if(binaryHeap[i] != null)System.out.print("case n°" + i + " : " + binaryHeap[i].getValue() + " | ");
         }
     }
 
 /////////////////////////////////////////////////////////////////////////////////////
 // isEmpty fonction boolean qui retourne l'etat de l'arbre
-//OK
+
     public boolean isEmpty(){
         return (this.root==null);
     }
 
 //////////////////////////////////////////////////////////////////////////////////
 // isExistNode permet de savoir si une valeur est dans l'arbre
-//OK
+
     public boolean isExistNode(NodeAVL actualNode, NodeAVL n) {
         if (actualNode == null) return false;
-        if (actualNode.getValueNode() == n.getValueNode()) return true;
-        if (n == null || (actualNode.getLeft() == null && actualNode.getRight() == null) ) {
+        if (actualNode.getValue() == n.getValue()) return true;
+        if (actualNode.getLeft() == null && actualNode.getRight() == null) {
             return false;
         }
         if (actualNode.getLeft() != null){
-            if (n.getValueNode() == actualNode.getLeft().getValueNode()) return true;
+            if (n.getValue() == actualNode.getLeft().getValue()) return true;
         }
 
         if (actualNode.getRight() != null){
-            if (n.getValueNode() == actualNode.getRight().getValueNode()) return true;
+            if (n.getValue() == actualNode.getRight().getValue()) return true;
         }
 
         if (actualNode.getRight() !=null || actualNode .getLeft() != null) return false;
-        if (n.getValueNode() < actualNode.getRight().getValueNode()) {
+        if (n.getValue() < actualNode.getRight().getValue()) {
             return isExistNode(actualNode.getLeft(),n);
         }
         return isExistNode(actualNode.getRight(), n);
     }
-///////////////////////////////////////////////////////////////////////////////////////////
 
-    public NodeAVL parentOfNode (NodeAVL cursorNode, NodeAVL actualNode){
-        if (cursorNode.getLeft() != null){
-            if(cursorNode.getLeft().getValueNode() == actualNode.getValueNode()){
-                return cursorNode;
-            }
-            if (cursorNode.getLeft().getValueNode() > actualNode.getValueNode()){
-                parentOfNode(cursorNode.getLeft(),actualNode);
-            }
-        }
-
-        if (cursorNode.getRight() != null){
-            if(cursorNode.getRight().getValueNode() == actualNode.getValueNode()){
-                return cursorNode;
-            }
-            if (cursorNode.getRight().getValueNode() < actualNode.getValueNode()){
-                parentOfNode(cursorNode.getRight(),actualNode);
-            }
-        }
-        return null;
-    }
 ///////////////////////////////////////////////////////////////////////////////////////////
 
     public NodeAVL getMinRight(NodeAVL actualNode){
@@ -207,6 +183,28 @@ public class TreeAVL {
             return actualNode;
         } else {
             getMinRight(actualNode.getLeft());
+        }
+        return null;
+    }
+///////////////////////////////////////////////////////////////////////////////////////////
+
+    public NodeAVL parentOfNode (NodeAVL cursorNode, NodeAVL actualNode){
+        if (cursorNode.getLeft() != null){
+            if(cursorNode.getLeft().getValue() == actualNode.getValue()){
+                return cursorNode;
+            }
+            if (cursorNode.getLeft().getValue() > actualNode.getValue()){
+                parentOfNode(cursorNode.getLeft(),actualNode);
+            }
+        }
+
+        if (cursorNode.getRight() != null){
+            if(cursorNode.getRight().getValue() == actualNode.getValue()){
+                return cursorNode;
+            }
+            if (cursorNode.getRight().getValue() < actualNode.getValue()){
+                parentOfNode(cursorNode.getRight(),actualNode);
+            }
         }
         return null;
     }
